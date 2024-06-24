@@ -1,4 +1,4 @@
-package com.breaksloop.panjayathu;
+package com.breaksloop.panjayathu.service;
 
 import com.breaksloop.panjayathu.config.LMResponse;
 import com.breaksloop.panjayathu.config.MessagePayload;

@@ -1,6 +1,6 @@
 package com.breaksloop.panjayathu.controller;
 
-import com.breaksloop.panjayathu.ChatService;
+import com.breaksloop.panjayathu.service.ChatService;
 import com.breaksloop.panjayathu.config.LMResponse;
 import com.breaksloop.panjayathu.config.MessagePayload;
 import lombok.AllArgsConstructor;

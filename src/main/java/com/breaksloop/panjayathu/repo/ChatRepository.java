@@ -12,6 +12,8 @@ import java.util.List;
 public interface ChatRepository extends JpaRepository<Chat,Integer> {
 
 
-    @Query(value = "select c.* from master.chat as c join master.chat_user cu on cu.chat_id=c.id where cu.user_id =?1 ORDER BY c.last_received_at desc",nativeQuery = true)
+    @Query(value = "select c.* from master.chat as c " +
+            "join master.chat_user cu on cu.chat_id=c.id " +
+            "where cu.from_id =?1 ORDER BY c.last_received_at desc",nativeQuery = true)
     List<Chat> findRecentChatsByUserID(Integer userId);
 }
