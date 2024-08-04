@@ -1,4 +1,4 @@
-package com.breaksloop.panjayathu.config;
+package com.breaksloop.panjayathu.common;
 
 import lombok.Data;
 

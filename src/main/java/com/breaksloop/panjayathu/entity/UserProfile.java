@@ -9,39 +9,32 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "chat_user")
+@Table(name = "user_profile")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class ChatUser implements Serializable {
-
+@Builder
+public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "chat_id")
+    @JoinColumn(name = "user_id")
     @ManyToOne
-    private Chat chat;
+    @JsonBackReference
+    private User user;
 
-    @JoinColumn(name = "from_id")
-    @ManyToOne
-    private User from;
+    @Column(name = "profile_name")
+    private String profileName;
 
-    @JoinColumn(name = "to_id")
-    @ManyToOne
-    private User to;
+    @Column(name = "status_message")
+    private String statusMsg;
 
-    @JoinColumn(name = "status")
-    @ManyToOne
-    private Status status;
-
-    public ChatUser(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "profile_pic")
+    private String profilePic;
 }

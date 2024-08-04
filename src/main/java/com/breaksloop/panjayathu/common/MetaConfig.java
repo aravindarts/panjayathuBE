@@ -1,6 +1,4 @@
-package com.breaksloop.panjayathu.config;
-
-import com.breaksloop.panjayathu.entity.Status;
+package com.breaksloop.panjayathu.common;
 
 public class MetaConfig {
 

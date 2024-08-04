@@ -1,8 +1,8 @@
 package com.breaksloop.panjayathu.controller;
 
 import com.breaksloop.panjayathu.service.ChatService;
-import com.breaksloop.panjayathu.config.LMResponse;
-import com.breaksloop.panjayathu.config.MessagePayload;
+import com.breaksloop.panjayathu.common.LMResponse;
+import com.breaksloop.panjayathu.common.MessagePayload;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class ChatController {
         return LMResponse.success("1.0", HttpStatus.OK.value());
     }
 
-    @GetMapping("/chats/{user_id}")
+    @GetMapping("/{user_id}")
     public LMResponse chats(@PathVariable("user_id") Integer userId){
         return chatService.chats(userId);
     }
@@ -31,16 +31,20 @@ public class ChatController {
         return chatService.messages(chatId);
     }
 
-    @PostMapping("/sendMessage/{chat_id}")
-    public LMResponse sendMessage(@PathVariable("chat_id") Integer chatId,@RequestBody MessagePayload messagePayload){
-        Integer from =6; // get it from filter
-        return chatService.sendMessage(chatId,from,messagePayload);
+
+    @PostMapping("/send/{user_id}/{chat_id}")
+    public LMResponse sendMessage(@PathVariable("user_id") Integer userId,//It will remove later
+                                  @PathVariable("chat_id") Integer chatId,
+                                  @RequestBody MessagePayload messagePayload){
+        Integer from =1; // get it from filter later
+        return chatService.sendMessage(chatId,userId,messagePayload);
     }
-    @PostMapping("/newMessage/{send_to}")
-    public LMResponse sendMessageUserId(@PathVariable("send_to") Integer sendTo,
+    @PostMapping("/new/{user_id}/{send_to}")
+    public LMResponse sendMessageUserId(@PathVariable("user_id") Integer userId,//It will remove later
+                                        @PathVariable("send_to") Integer sendTo,
                                         @RequestBody MessagePayload messagePayload){
-        Integer from =6; // get it from filter
-        return chatService.createAndSendMessage(sendTo,from,messagePayload);
+        Integer from =1; // get it from filter later
+        return chatService.createAndSendMessage(sendTo,userId,messagePayload);
     }
 
 

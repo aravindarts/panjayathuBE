@@ -1,5 +1,6 @@
 package com.breaksloop.panjayathu.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -41,6 +42,11 @@ public class User implements Serializable {
 
     @Column(name = "deactivated_time")
     private LocalDateTime deactivatedTime;
+
+    @OneToOne(mappedBy = "user")
+    @JsonManagedReference
+
+    private UserProfile userProfile;
 
     public User(Integer id) {
         this.id = id;

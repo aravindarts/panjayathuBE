@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message,Integer> {
 
-    @Query(value = "select * from master.message where chat_id =?1 order by send_at desc",nativeQuery = true)
+    @Query(value = "select * from master.message where chat_id =?1 order by send_at asc",nativeQuery = true)
     List<Message> findLatestMessagesById(Integer chatId);
 }
